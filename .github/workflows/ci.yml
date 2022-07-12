@@ -33,9 +33,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          # platforms: linux/amd64,linux/arm64
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
+          ROS_DISTRO: "humble"
           push: true
           build-args: |
-            ROS_DISTRO=humble
-          tags: ghcr.io/rosblox/ros:humble-rosbridge-websuite
+            ROS_DISTRO=$ROS_DISTRO
+          tags: ghcr.io/rosblox/ros:$ROS_DISTRO-rosbridge-websuite
