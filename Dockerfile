@@ -3,6 +3,7 @@ ARG ROS_DISTRO
 
 FROM ros:${ROS_DISTRO}-ros-base AS builder
 
+
 WORKDIR /colcon_ws
 
 RUN git clone --recursive https://github.com/rosblox/px4_msgs src/px4_msgs && \
