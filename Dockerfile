@@ -19,4 +19,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-${ROS_DISTRO}-tf2-msgs \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /colcon_ws/install/px4_msgs /opt/ros/humble
+COPY --from=builder /colcon_ws/install/px4_msgs /opt/ros/${ROS_DISTRO}
