@@ -26,3 +26,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=builder /colcon_ws/install/px4_msgs /opt/ros/${ROS_DISTRO}
 COPY --from=builder /colcon_ws/install/mocap_msgs /opt/ros/${ROS_DISTRO}
 COPY --from=builder /colcon_ws/install/dynamixel_sdk_custom_interfaces /opt/ros/${ROS_DISTRO}
+
