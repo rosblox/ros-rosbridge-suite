@@ -27,5 +27,7 @@ COPY --from=builder /colcon_ws/install/rslidar_msg /opt/ros/${ROS_DISTRO}
 
 COPY ros_entrypoint.sh .
 
-RUN echo 'source /opt/ros/humble/setup.bash; ros2 launch rosbridge_server rosbridge_websocket_launch.xml' >> /run.sh && chmod +x /run.sh
-RUN echo 'alias run="su - ros /run.sh"' >> /etc/bash.bashrc
+ENV LAUNCH_COMMAND='ros2 launch rosbridge_server rosbridge_websocket_launch.xml'
+
+RUN echo 'alias run="su - ros --whitelist-environment=\"ROS_DOMAIN_ID\" /run.sh"' >> /etc/bash.bashrc && \
+    echo "source /opt/ros/$ROS_DISTRO/setup.bash; echo UID: $UID; echo ROS_DOMAIN_ID: $ROS_DOMAIN_ID; $LAUNCH_COMMAND" >> /run.sh && chmod +x /run.sh
